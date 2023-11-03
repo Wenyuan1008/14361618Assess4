@@ -15,9 +15,13 @@ public class PacStudentController : MonoBehaviour
     // 尘土粒子效果
     public ParticleSystem dustParticles;
 
+    // 动画组件
+    private Animator animator;
+
     private void Start()
     {
         targetPosition = transform.position; // 初始化目标位置为当前位置
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -31,18 +35,26 @@ public class PacStudentController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             lastInput = Vector3.up;
+            animator.SetFloat("DirX", 0);
+            animator.SetFloat("DirY", 1);
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
             lastInput = Vector3.down;
+            animator.SetFloat("DirX", 0);
+            animator.SetFloat("DirY", -1);
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
             lastInput = Vector3.left;
+            animator.SetFloat("DirX", -1);
+            animator.SetFloat("DirY", 0);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
             lastInput = Vector3.right;
+            animator.SetFloat("DirX", 1);
+            animator.SetFloat("DirY", 0);
         }
 
         // 更新目标位置
